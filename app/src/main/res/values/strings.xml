@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Task Management App2</string>
+    <string name="title_activity_splash">SplashActivity</string>
+</resources>
