@@ -5,25 +5,37 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class registerActivity extends AppCompatActivity {
 
+    databaseHelper db;  // Database helper for interacting with SQLite
+    EditText firstNameEditText, lastNameEditText, emailEditText, passwordEditText;
+    Button registerButton, backToSplashButton;
+    TextView signInTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        // Initialize DatabaseHelper
+        db = new databaseHelper(this);
+
         // Get references to the EditText fields
-        EditText firstNameEditText = findViewById(R.id.first_name);
-        EditText lastNameEditText = findViewById(R.id.last_name);
-        EditText emailEditText = findViewById(R.id.email_address);
-        EditText passwordEditText = findViewById(R.id.password);
+        firstNameEditText = findViewById(R.id.first_name);
+        lastNameEditText = findViewById(R.id.last_name);
+        emailEditText = findViewById(R.id.email_address);
+        passwordEditText = findViewById(R.id.password);
 
-        Button registerButton = findViewById(R.id.register_button);
-        Button backToSplashButton = findViewById(R.id.back_to_splash_button);
+        // Get references to the buttons and TextView
+        registerButton = findViewById(R.id.register_button);
+        backToSplashButton = findViewById(R.id.back_to_splash_button);
+        signInTextView = findViewById(R.id.sign_in_text);
 
-        // Set onClick listeners for the buttons
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -33,12 +45,24 @@ public class registerActivity extends AppCompatActivity {
                 String email = emailEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
 
-                // Validate inputs or save data as needed
-
-                // Navigate to the HomeActivity after registration
-                Intent intent = new Intent(registerActivity.this, homeActivity.class);
-                startActivity(intent);
-                finish(); // Optional: Close the RegisterActivity so it's not in the back stack
+                if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty()) {
+                    Toast.makeText(registerActivity.this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
+                } else if (!email.contains("@")) {
+                    // Validate the email address contains "@"
+                    Toast.makeText(registerActivity.this, "Invalid email address, please try again", Toast.LENGTH_SHORT).show();
+                } else {
+                    // Insert user data into the database
+                    boolean isInserted = db.insertUser(firstName, lastName, email, password);
+                    if (isInserted) {
+                        Toast.makeText(registerActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
+                        // Navigate to the LoginActivity after successful registration
+                        Intent intent = new Intent(registerActivity.this, loginActivity.class);
+                        startActivity(intent);
+                        finish();  // Optional: Close the RegisterActivity
+                    } else {
+                        Toast.makeText(registerActivity.this, "Registration Failed", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
 
@@ -48,7 +72,17 @@ public class registerActivity extends AppCompatActivity {
                 // Navigate back to the SplashActivity
                 Intent intent = new Intent(registerActivity.this, splashActivity.class);
                 startActivity(intent);
-                finish(); // Optional: Close the RegisterActivity
+                finish();  // Optional: Close the RegisterActivity
+            }
+        });
+
+        signInTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to the LoginActivity
+                Intent intent = new Intent(registerActivity.this, loginActivity.class);
+                startActivity(intent);
+                finish();  // Optional: Close the RegisterActivity
             }
         });
     }

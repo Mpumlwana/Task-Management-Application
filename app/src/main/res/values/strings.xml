@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Task Management App2</string>
     <string name="title_activity_splash">SplashActivity</string>
+    <string name="welcome_message">Welcome to the Task Management App!</string>
+    <string name="login_button">Log In</string>
+    <string name="logout_button">Log Out</string>
+    <string name="error_message">An error occurred. Please try again.</string>
 </resources>

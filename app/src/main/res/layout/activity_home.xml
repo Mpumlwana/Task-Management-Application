@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <!-- Profile Image -->
+
+        <!-- Welcome Message -->
+        <ImageView
+                android:id="@+id/profile_image"
+                android:layout_width="506dp"
+                android:layout_height="289dp"
+                android:layout_marginBottom="16dp"
+                android:src="@drawable/pic2"
+                android:contentDescription="Profile Image"
+                android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/welcome_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome, [Name Surname]!"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Feature Buttons -->
+        <Button
+            android:id="@+id/create_task_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create a Task"
+                android:textStyle="bold"
+                android:textSize="20sp"
+            android:backgroundTint="@android:color/holo_blue_bright"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="16dp"/>
+
+        <Button
+            android:id="@+id/activities_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Activities"
+                android:textStyle="bold"
+                android:textSize="20sp"
+            android:backgroundTint="@android:color/holo_blue_bright"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="16dp"/>
+
+        <Button
+                android:id="@+id/prioritize_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Prioritize"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:backgroundTint="@android:color/holo_blue_bright"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="16dp" />
+
+        <Button
+                android:id="@+id/task_master_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Task Master"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:backgroundTint="@android:color/holo_blue_bright"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="16dp" />
+
+        <!-- Exit Button -->
+
+        <Button
+                android:id="@+id/analytics_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Analytics"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:backgroundTint="@android:color/holo_blue_bright"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="32dp" />
+
+        <Button
+                android:id="@+id/exit_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Exit"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:backgroundTint="@android:color/holo_blue_bright"
+                android:textColor="@android:color/white" />
+    </LinearLayout>
+</ScrollView>
