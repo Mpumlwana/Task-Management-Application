@@ -5,4 +5,7 @@
     <string name="login_button">Log In</string>
     <string name="logout_button">Log Out</string>
     <string name="error_message">An error occurred. Please try again.</string>
+    <string name="choose_a_subject">Choose a subject:</string>
+    <string name="your_grades">Your Grades:</string>
+    <string name="select_your_subject">Select Your Subject</string>
 </resources>

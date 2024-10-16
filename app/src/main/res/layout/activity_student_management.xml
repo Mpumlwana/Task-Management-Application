@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:background="@drawable/background_main">
+
+    <!-- Title -->
+    <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Your Subject"
+            android:textSize="24sp"
+            android:textColor="@color/primaryTextColor"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp" />
+
+    <!-- Dropdown to select subjects -->
+    <TextView
+            android:id="@+id/subject_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choose a subject:"
+            android:textSize="16sp"
+            android:layout_below="@id/title"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/secondaryTextColor" />
+
+    <Spinner
+            android:id="@+id/subject_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/subject_label"
+            android:background="@drawable/spinner_background"
+            android:padding="12dp"
+            android:layout_marginBottom="20dp" />
+
+    <!-- Grades section -->
+    <TextView
+            android:id="@+id/grades_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Grades:"
+            android:textSize="20sp"
+            android:layout_below="@id/subject_spinner"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/primaryTextColor" />
+
+    <ListView
+            android:id="@+id/grades_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/grades_label"
+            android:divider="@drawable/divider"
+            android:dividerHeight="8dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/list_item_background"
+            android:layout_marginTop="10dp" />
+</RelativeLayout>
