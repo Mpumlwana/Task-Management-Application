@@ -60,7 +60,9 @@ public class homeActivity extends AppCompatActivity {
         createTaskButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Add functionality for creating a task
+                // Navigate to CreateTaskActivity
+                Intent intent= new Intent(homeActivity.this, CreateTaskActivity.class);
+                startActivity(intent);
             }
         });
 
