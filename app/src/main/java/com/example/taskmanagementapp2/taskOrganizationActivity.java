@@ -1,27 +1,50 @@
 package com.example.taskmanagementapp2;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import androidx.annotation.Nullable;
+
+import java.util.Date;
 import java.util.List;
 
 public class taskOrganizationActivity extends AppCompatActivity {
-    private List<task> tasks;
+    //private List<task>tasks;
+    private List<task> today,upcoming,done;
+    private databaseHelper databaseHelper;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_organization);
 
-        // Initialize the list of tasks
-        tasks = new ArrayList<>();
+        //Initialize the database helper
+        databaseHelper=new databaseHelper(this);
 
-        // Create some hardcoded tasks
+        // Initialize the list of tasks
+        //tasks = new ArrayList<>();
+        today= new ArrayList<>();
+        upcoming= new ArrayList<>();
+        done= new ArrayList<>();
+
+        //Fetch tasks from the database and categorize them
+        fetchTasksFromDatabase();
+        //set TabLayout and viewpager2
+        TabLayout tabLayout=findViewById(R.id.tabLayout);
+        ViewPager2 viewPager2=findViewById(R.id.viewPager);
+        //Pass categorized tasks to the adapter
+        taskPagerAdapter adapter= new taskPagerAdapter(this,today,upcoming,done);
+        viewPager2.setAdapter(adapter);
+
+
+      /*  // Create some hardcoded tasks
         Calendar calendar = Calendar.getInstance();
 
         // Today's task
@@ -77,9 +100,9 @@ public class taskOrganizationActivity extends AppCompatActivity {
         ViewPager2 viewPager = findViewById(R.id.viewPager);
 
         taskPagerAdapter adapter = new taskPagerAdapter(this, tasks);
-        viewPager.setAdapter(adapter);
+        viewPager.setAdapter(adapter);*/
 
-        new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
+        new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> {
             switch (position) {
                 case 0:
                     tab.setText("Today");
@@ -93,6 +116,46 @@ public class taskOrganizationActivity extends AppCompatActivity {
             }
         }).attach();
     }
-}
+    private void fetchTasksFromDatabase(){
+        //get current date
+        Calendar calendar=Calendar.getInstance();
+        SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd");
+        String todayDate = dateFormat.format(calendar.getTime());
+
+        //fetch tasks from the database
+         Cursor cursor=databaseHelper.getAllTasks();
+        while (cursor.moveToNext()){
+            String title= cursor.getString(1);
+            String category=cursor.getString(2);
+            String date=cursor.getString(3);
+            String time=cursor.getString(4);
+            String description=cursor.getString(5);
+            //parse date
+            Date taskDate = null;
+            try {
+                taskDate = dateFormat.parse(date);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            // Categorize tasks based on the date and status
+            if (taskDate != null) {
+                Calendar taskCalendar = Calendar.getInstance();
+                taskCalendar.setTime(taskDate);
+
+                // Check if the task is done (use a status column in the database if available)
+                boolean isDone = false;  // Assuming false for now. Add a column in DB for status if needed.
+
+                if (date.equals(todayDate)) {
+                    today.add(new task(title, description, taskDate, isDone));
+                } else if (taskDate.after(calendar.getTime())) {
+                    upcoming.add(new task(title, description, taskDate, isDone));
+                } else if (isDone) {
+                    done.add(new task(title, description, taskDate, isDone));
+                }
+            }
+        }
+        }
+    }
 
 
