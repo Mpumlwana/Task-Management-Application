@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+    <EditText
+            android:id="@+id/editTextTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Reminder Title"
+            android:inputType="text"
+            android:layout_marginBottom="16dp"/>
+
+    <Button
+            android:id="@+id/buttonDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Date"
+            android:layout_marginBottom="16dp"/>
+
+    <Button
+            android:id="@+id/buttonTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Time"
+            android:layout_marginBottom="16dp"/>
+
+    <Switch
+            android:id="@+id/switchRecurring"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Recurring"
+            android:layout_marginBottom="16dp"/>
+
+    <Button
+            android:id="@+id/buttonSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save Reminder"/>
+
+</LinearLayout>

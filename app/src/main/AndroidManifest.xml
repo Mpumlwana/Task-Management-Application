@@ -1,6 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.taskmanagementapp2">
 
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -33,6 +37,18 @@
         <!-- TaskOrganizationActivity Declaration -->
         <activity android:name=".taskOrganizationActivity"
             android:exported="true" />
+
+        <!-- CreateReminderActivity Declaration -->
+        <activity android:name=".CreateReminderActivity"
+                android:exported="true"/>
+
+        <!-- SettingsActivity Declaration -->
+        <activity android:name=".SettingsActivity"
+                android:exported="true"/>
+
+
+
+        <receiver android:name=".NotificationReceiver" />
 
     </application>
 </manifest>
