@@ -3,7 +3,6 @@ package com.example.taskmanagementapp2;
 import java.util.Date;
 
 public class task {
-
     private String title;
     private String description;
     private Date dueDate;
@@ -16,6 +15,7 @@ public class task {
         this.isDone = isDone;
     }
 
+    // Getter methods
     public String getTitle() {
         return title;
     }
@@ -31,5 +31,9 @@ public class task {
     public boolean isDone() {
         return isDone;
     }
-}
 
+    // Setter method to mark task as done
+    public void setDone(boolean done) {
+        this.isDone = done;
+    }
+}

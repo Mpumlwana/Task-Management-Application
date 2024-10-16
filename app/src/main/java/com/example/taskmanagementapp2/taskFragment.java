@@ -23,8 +23,9 @@ public class taskFragment extends Fragment {
     public static final int TYPE_UPCOMING = 1;
     public static final int TYPE_DONE = 2;
 
-    private int fragmentType;
-    private List<task> tasks;
+    protected int fragmentType;
+    protected List<task> tasks;
+    private taskAdapter adapter;
 
     public static taskFragment newInstance(int type, List<task> tasks) {
         taskFragment fragment = new taskFragment();
@@ -71,33 +72,53 @@ public class taskFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(recyclerViewId);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault());
+        // Filter the tasks based on the fragment type
         List<task> filteredTasks = filterTasksByType(fragmentType);
 
-        taskAdapter adapter = new taskAdapter(filteredTasks, fragmentType);
+        // Initialize the adapter and pass the "mark as done" listener
+        adapter = new taskAdapter(filteredTasks, fragmentType, this::markTaskAsDone);
         recyclerView.setAdapter(adapter);
 
         return view;
     }
 
+    // Method to mark a task as done
+    private void markTaskAsDone(task completedTask) {
+        completedTask.setDone(true); // Set the task as done
+
+        // Remove the task from the current list (for Today and Upcoming fragments)
+        if (fragmentType != TYPE_DONE) {
+            tasks.remove(completedTask);
+        }
+
+        // Notify the adapter about the dataset change to refresh the list
+        adapter.notifyDataSetChanged();
+    }
+
+    // Filter tasks based on the fragment type
     private List<task> filterTasksByType(int type) {
         Date today = new Date();
         switch (type) {
             case TYPE_TODAY:
-                return tasks.stream().filter(task -> isSameDay(task.getDueDate(), today) && !task.isDone()).collect(Collectors.toList());
+                return tasks.stream()
+                        .filter(task -> isSameDay(task.getDueDate(), today) && !task.isDone())
+                        .collect(Collectors.toList());
             case TYPE_UPCOMING:
-                return tasks.stream().filter(task -> task.getDueDate().after(today) && !task.isDone()).collect(Collectors.toList());
+                return tasks.stream()
+                        .filter(task -> task.getDueDate().after(today) && !task.isDone())
+                        .collect(Collectors.toList());
             case TYPE_DONE:
-                return tasks.stream().filter(task::isDone).collect(Collectors.toList());
+                return tasks.stream()
+                        .filter(task::isDone)
+                        .collect(Collectors.toList());
             default:
                 return tasks;
         }
     }
 
+    // Helper method to check if two dates are the same
     private boolean isSameDay(Date date1, Date date2) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
         return sdf.format(date1).equals(sdf.format(date2));
     }
 }
-
-
