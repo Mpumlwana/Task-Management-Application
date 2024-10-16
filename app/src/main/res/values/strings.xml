@@ -5,4 +5,23 @@
     <string name="login_button">Log In</string>
     <string name="logout_button">Log Out</string>
     <string name="error_message">An error occurred. Please try again.</string>
+
+    <string name="add_reminder">Add Reminder</string>
+    <string name="edit_reminder">Edit Reminder</string>
+    <string name="reminder_title">Reminder Title</string>
+    <string name="select_date">Select Date</string>
+    <string name="select_time">Select Time</string>
+    <string name="recurring">Recurring</string>
+    <string name="save_reminder">Save Reminder</string>
+    <string name="notification_sound">Notification Sound</string>
+    <string name="notification_frequency">Notification Frequency</string>
+    <string name="enable_notifications">Enable Notifications</string>
+    <string name="save_settings">Save Settings</string>
+    <string name="one_time">One-time</string>
+    <string name="reminder_saved">Reminder saved</string>
+    <string name="fill_all_fields">Please fill all fields</string>
+    <string name="reminder_notification">Reminder Notification</string>
+    <string name="settings">Settings</string>
+    <string name="notification_settings">Notification_Settings\n</string>
+
 </resources>

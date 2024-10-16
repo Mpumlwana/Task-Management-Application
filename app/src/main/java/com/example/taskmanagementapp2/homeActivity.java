@@ -29,6 +29,7 @@ public class homeActivity extends AppCompatActivity {
 
         // Set up buttons
         Button createTaskButton = findViewById(R.id.create_task_button);
+        Button createReminderButton = findViewById(R.id.create_reminder_button);
         Button activitiesButton = findViewById(R.id.activities_button);
         Button prioritizeButton = findViewById(R.id.prioritize_button);
         Button taskMasterButton = findViewById(R.id.task_master_button);
@@ -61,6 +62,14 @@ public class homeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Add functionality for creating a task
+            }
+        });
+
+        createReminderButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(homeActivity.this, CreateReminderActivity.class);
+                startActivity(intent);
             }
         });
 
