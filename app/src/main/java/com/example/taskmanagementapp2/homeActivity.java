@@ -54,6 +54,8 @@ public class homeActivity extends AppCompatActivity {
                 Intent intent = new Intent(homeActivity.this, taskOrganizationActivity.class);
                 startActivity(intent);
             }
+
+
         });
 
         // Add OnClickListener to other buttons as needed
@@ -67,7 +69,8 @@ public class homeActivity extends AppCompatActivity {
         activitiesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Add functionality for activities
+                Intent intent = new Intent(homeActivity.this, mainActivity.class);
+                startActivity(intent);
             }
         });
 

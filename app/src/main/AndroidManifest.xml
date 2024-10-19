@@ -33,8 +33,12 @@
         <!-- TaskOrganizationActivity Declaration -->
         <activity android:name=".taskOrganizationActivity"
             android:exported="true" />
+        <activity android:name=".mainActivity"
+                android:exported="true" />
 
     </application>
+
+
 </manifest>
 
 

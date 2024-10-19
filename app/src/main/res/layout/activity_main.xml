@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+    <!-- Spinner for selecting subjects -->
+    <Spinner
+            android:id="@+id/subject_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="16dp" />
+
+    <!-- Button to view grades -->
+    <Button
+            android:id="@+id/view_grades_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View Grades"
+            android:layout_below="@id/subject_spinner"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp" />
+
+    <!-- ListView to display grades -->
+    <ListView
+            android:id="@+id/grades_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/view_grades_button"
+            android:layout_marginTop="16dp" />
+
+</RelativeLayout>
