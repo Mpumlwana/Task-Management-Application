@@ -54,6 +54,8 @@ public class homeActivity extends AppCompatActivity {
                 Intent intent = new Intent(homeActivity.this, taskOrganizationActivity.class);
                 startActivity(intent);
             }
+
+
         });
 
         // Add OnClickListener to other buttons as needed
