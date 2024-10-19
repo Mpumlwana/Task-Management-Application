@@ -92,6 +92,9 @@ public class mainActivity extends AppCompatActivity {
             // Create an adapter to display the grades in the ListView
             ArrayAdapter<String> gradesAdapter = new ArrayAdapter<>(mainActivity.this, android.R.layout.simple_list_item_1, grades);
             gradesList.setAdapter(gradesAdapter);
+
+
+
         }
     }
 }
